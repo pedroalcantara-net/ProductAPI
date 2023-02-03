@@ -2,12 +2,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Products.API.Configs;
 using Products.API.Middleware;
 using Products.Data;
-using Products.Repository;
-using Products.Repository.Interface;
-using Products.Service;
-using Products.Service.Interface;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,17 +18,8 @@ var connString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<ProductsContext>(options => options.UseSqlite(connString));
 #endregion
 
-builder.Services.AddTransient<ErrorHandlingMiddleware>();
 
-#region Repository Dependency Injection
-builder.Services.AddTransient<IProductRepository, ProductRepository>();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-#endregion
-
-#region Service Dependency Injection
-builder.Services.AddTransient<IProductService, ProductService>();
-builder.Services.AddTransient<IUserService, UserService>();
-#endregion
+builder.Services.StartRegisterServices();
 
 #region JWT
 builder.Services.AddAuthentication(options =>
