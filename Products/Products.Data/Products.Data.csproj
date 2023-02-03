@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Products.Data\Products.Data.csproj" />
     <ProjectReference Include="..\Products.Domain\Products.Domain.csproj" />
   </ItemGroup>
 

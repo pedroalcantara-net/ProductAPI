@@ -2,8 +2,10 @@
 {
     public class User
     {
+        public User(string username, string password) => (Id, Username, Password) = (0, username, password);
+
         public int Id { get; set; }
-        public string Email { get; set; }
-        public byte[] Password { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace Products.Domain.Migrations
+namespace Products.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class NewDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,7 @@ namespace Products.Domain.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     Price = table.Column<float>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
@@ -30,8 +30,8 @@ namespace Products.Domain.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<byte[]>(type: "BLOB", nullable: false)
+                    Username = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

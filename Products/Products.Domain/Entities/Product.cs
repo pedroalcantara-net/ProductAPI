@@ -9,6 +9,8 @@ namespace Products.Domain.Entities
 
         [Key]
         public int Id { get; set; }
+        [StringLength(100)]
+        [Required]
         public string Name { get; set; }
         public float Price { get; set; }
     }

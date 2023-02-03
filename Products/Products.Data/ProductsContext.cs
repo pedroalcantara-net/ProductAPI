@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Products.Domain.Entities;
-using System.Security.Claims;
 
-namespace Products.Domain
+namespace Products.Data
 {
     public class ProductsContext : DbContext
     {

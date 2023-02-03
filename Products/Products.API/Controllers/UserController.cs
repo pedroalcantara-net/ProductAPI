@@ -1,21 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Products.Domain.ViewModel;
+using Products.Service.Interface;
 
 namespace Products.API.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpPost("")]
-        public IActionResult SignUp()
+        private readonly IUserService _user;
+        public UserController(IUserService user)
         {
-            return Ok();
+            _user = user;
         }
 
-        [HttpPost("login")]
-        public IActionResult SignIn()
+        [HttpPost("signup")]
+        public IActionResult SignUp(UserViewmodel user)
         {
-            return Ok();
+            return Created("", _user.SignUp(user));
+        }
+
+        [HttpPost]
+        public IActionResult SignIn(UserViewmodel user)
+        {
+            return Ok(_user.Login(user));
         }
     }
 }

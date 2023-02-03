@@ -3,15 +3,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Products.Domain;
+using Products.Data;
 
 #nullable disable
 
-namespace Products.Domain.Migrations
+namespace Products.Data.Migrations
 {
     [DbContext(typeof(ProductsContext))]
-    [Migration("20230202213736_Initial")]
-    partial class Initial
+    [Migration("20230203115735_NewDatabase")]
+    partial class NewDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,7 @@ namespace Products.Domain.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<float>("Price")
@@ -43,13 +44,13 @@ namespace Products.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<byte[]>("Password")
+                    b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("BLOB");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

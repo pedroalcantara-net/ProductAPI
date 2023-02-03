@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Products.Domain;
+using Products.Data;
 using Products.Domain.Entities;
 using Products.Repository.Interface;
 
@@ -16,7 +16,7 @@ namespace Products.Repository
             _product = context.Set<Product>();
         }
 
-        public async Task<IEnumerable<Product>> GetAll() => await _product.ToListAsync();
+        public async Task<IEnumerable<Product>> GetProducts() => await _product.ToListAsync();
         public async Task<Product> GetById(int id) => await _product.FindAsync(id);
         public Product Add(Product product)
         {
